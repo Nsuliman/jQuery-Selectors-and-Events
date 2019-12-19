@@ -25,6 +25,10 @@ function Horns (data) {                                         // bulit constru
 
 Horns.all= [];                                                  // array to store all objects oce created 
 
+
+
+/******************************************************* Display Images ***********************************************/
+
 Horns.prototype.render = function(){
   // console.log('hornobject : ', this.keyword);                // just for testing to check if I got data and access to the object
 
@@ -52,4 +56,36 @@ $.get('../data/page-1.json')                                   // get needed dat
       let hhorn = new Horns(hornobject);
           hhorn.render();
     }); //end of Foreach 
-  }); // end of .THEN
+  }) // end of .THEN
+  .then( () => populateSelectBox() );                             // to show up the selected keyword images (filtering)
+
+  /******************************************************* Filter  Images ***********************************************/
+
+  /*   <option value="default">Filter by Keyword</option>    */
+
+  function populateSelectBox() {
+
+    let seen = [];                                                    // empty array to put unique keywords into it 
+    let select= $('select');                                          // put the keywords in the select tag options so, add select and assign to variable
+    Horns.all.forEach ( horn =>                                       // for-loop for arrary of objects that we stored its into instructor array 
+      { 
+        if (! (seen.includes(horn.keyword)))                           // check if keyword in the array , if not we do as below 
+        {   
+          let option =  `<option value="${horn.keyword}">${horn.keyword}</option>`    // add the keyword to dropdown menu 
+          select.append(option);                                                      // append it to select tag (markup)
+          seen.push(horn.keyword);                                                    // add keyword to this array if there's any repeated keywords will not added
+        } // end of if statement 
+      }); // end of foreach 
+
+        console.log('seen Array of keywords  : ', seen );                             // print out seen array 
+  } // end of populateSelectBox function 
+
+
+  // Function to show up the images related to selected keywords 
+  $('select').on('change', function ()                                                // change event 
+  {
+    let selectedkeyword = $(this).val();                                              // this is the selected keyword in the dropdown menu ,, val() JQuery build-in function to get the value of something 
+    console.log(' selectedkeyword: ', selectedkeyword);                               // print out the selected keyword 
+    $('div').hide();                                                                  // hide all div and images 
+    $(`.${selectedkeyword}`).fadeIn(1000);                                            // show all images related to the selected keywords , fadein() build-in JQuery function to show something slowly
+  }); // end of function 

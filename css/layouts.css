@@ -1,19 +1,15 @@
 h1 {
-    margin: 30px auto; 
+    margin: 20px auto; 
 }
-
-/* header  {
-    display: flex;
-    justify-content: flex-end;
-} */
 
 div {
     float: left;
     height: 470px;
     margin: 3em;
-    width: 300px;
+    width: 325px;
     text-align: center;
-  }
+    align-content: center; 
+ }
   
 main {
     overflow:hidden;
@@ -26,6 +22,5 @@ header {
 }
 
 footer {
-
     margin: 30px auto;
 }

@@ -8,6 +8,8 @@ h1 {
     color: rgb(51, 2, 2);
     text-align: center;
     background-color: rgb(228, 228, 240);
+    background-color: rgb(232, 232, 241);
+    border-radius: 50px;
 }
 
 header {
@@ -41,9 +43,12 @@ img {
     max-width: 80%;
 }
 footer {
+
     color: rgb(51, 2, 2);
     text-align: center;
     background-color: rgb(228, 228, 240);
     font-weight: bolder;
     font-size: large;
+    background-color: rgb(232, 232, 241);
+    border-radius: 50px;
 }
