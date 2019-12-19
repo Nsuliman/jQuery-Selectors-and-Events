@@ -3,3 +3,19 @@ h1 {
     margin: 30px auto;
    
 }
+
+/* header  {
+    display: flex;
+    justify-content: flex-end;
+} */
+
+header {
+    text-align: center;
+    margin: 20px auto;
+}
+
+footer {
+    
+    margin: 30px auto;
+
+}
