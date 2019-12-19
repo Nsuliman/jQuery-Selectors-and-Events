@@ -1,7 +1,5 @@
 h1 {
-
-    margin: 30px auto;
-   
+    margin: 30px auto; 
 }
 
 /* header  {
@@ -9,13 +7,24 @@ h1 {
     justify-content: flex-end;
 } */
 
+div {
+    float: left;
+    height: 500px;
+    margin: 3em;
+    width: 300px;
+    text-align: center;
+  }
+  
+main {
+    overflow:hidden;
+  }
+
 header {
     text-align: center;
     margin: 20px auto;
 }
 
 footer {
-    
-    margin: 30px auto;
 
+    margin: 30px auto;
 }

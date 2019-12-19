@@ -28,7 +28,14 @@ select {
     font-size: large;
 }
 
+div {
+    color: navy;
+    background-color: rgb(232, 232, 241);
+    border-radius: 5px;}
 
+img {
+    max-width: 80%;
+}
 footer {
     color: rgb(51, 2, 2);
     text-align: center;
