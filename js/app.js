@@ -13,6 +13,8 @@
 
 function Horns (data) {                                         // bulit constructor function 
 
+  // constructor function properties 
+
   this.image_url = data.image_url;
   this .title = data.title;
   this.description = data.description;
@@ -53,8 +55,8 @@ $.get('../data/page-1.json')                                   // get needed dat
     // console.log('data : ', data);                          // print out all objects (array of objects)
     data.forEach( hornobject => {                              // for loop to get every object in the array 
       // console.log('hornobject : ', hornobject);             // print out each object alone 
-      let hhorn = new Horns(hornobject);
-          hhorn.render();
+      let hhorn = new Horns(hornobject);                        // create new instance from constructor function 
+          hhorn.render();                                       // call render function using object since the function is a prototype function (part of constructor function)
     }); //end of Foreach 
   }) // end of .THEN
   .then( () => populateSelectBox() );                             // to show up the selected keyword images (filtering)
@@ -65,6 +67,9 @@ $.get('../data/page-1.json')                                   // get needed dat
 
   function populateSelectBox() {
 
+
+    // Horns.all.sort((obj1,obj2) => {return obj1.title < obj2.title ? -1 : 1;});       // tried to sort it but here I couldn't, ignore this line of code 
+
     let seen = [];                                                    // empty array to put unique keywords into it 
     let select= $('select');                                          // put the keywords in the select tag options so, add select and assign to variable
     Horns.all.forEach ( horn =>                                       // for-loop for arrary of objects that we stored its into instructor array 
@@ -72,12 +77,12 @@ $.get('../data/page-1.json')                                   // get needed dat
         if (! (seen.includes(horn.keyword)))                           // check if keyword in the array , if not we do as below 
         {   
           let option =  `<option value="${horn.keyword}">${horn.keyword}</option>`    // add the keyword to dropdown menu 
+          // console.log(' option : ', option);                                          // print out option 
           select.append(option);                                                      // append it to select tag (markup)
-          seen.push(horn.keyword);                                                    // add keyword to this array if there's any repeated keywords will not added
+          seen.push(horn.keyword);                                                    // add keyword to this array if there's any repeated keywords will not added 
         } // end of if statement 
       }); // end of foreach 
-
-        console.log('seen Array of keywords  : ', seen );                             // print out seen array 
+        // console.log('seen Array of keywords  : ', seen );                             // print out seen array 
   } // end of populateSelectBox function 
 
 
@@ -85,7 +90,7 @@ $.get('../data/page-1.json')                                   // get needed dat
   $('select').on('change', function ()                                                // change event 
   {
     let selectedkeyword = $(this).val();                                              // this is the selected keyword in the dropdown menu ,, val() JQuery build-in function to get the value of something 
-    console.log(' selectedkeyword: ', selectedkeyword);                               // print out the selected keyword 
+    // console.log(' selectedkeyword: ', selectedkeyword);                               // print out the selected keyword 
     $('div').hide();                                                                  // hide all div and images 
     $(`.${selectedkeyword}`).fadeIn(1000);                                            // show all images related to the selected keywords , fadein() build-in JQuery function to show something slowly
   }); // end of function 

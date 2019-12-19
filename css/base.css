@@ -17,6 +17,15 @@ header {
     border-radius: 30px;
 }
 
+main {
+    font-family: 'Playfair Display', serif;
+    font-weight: bolder;
+}
+
+#h2style {
+    color: rgb(119, 9, 114);
+}
+
 select {
     color: black;
     padding: 10px;
@@ -37,18 +46,18 @@ select {
 div {
     color: navy;
     background-color: rgb(232, 232, 241);
-    border-radius: 5px;}
+    border-radius: 60px;}
 
 img {
     max-width: 80%;
 }
 footer {
 
-    color: rgb(51, 2, 2);
+    color: rgb(189, 88, 88);
     text-align: center;
     background-color: rgb(228, 228, 240);
     font-weight: bolder;
-    font-size: large;
+    font-size: x-large;
     background-color: rgb(232, 232, 241);
     border-radius: 50px;
 }
