@@ -29,6 +29,7 @@ Horns.all= [];                                                  // array to stor
 
 
 
+
 /******************************************************* Display Images ***********************************************/
 
 Horns.prototype.render = function(){
@@ -56,12 +57,13 @@ $.get('../data/page-1.json')                                   // get needed dat
     data.forEach( hornobject => {                              // for loop to get every object in the array 
       // console.log('hornobject : ', hornobject);             // print out each object alone 
       let hhorn = new Horns(hornobject);                        // create new instance from constructor function 
-          // hhorn.render();                                       // call render function using object since the function is a prototype function (part of constructor function)
-          hhorn.render1();                                        // Hnadlebars render function 
+          // hhorn.render1();                                       // call render function using object since the function is a prototype function (part of constructor function)
+          hhorn.render();                                        // Hnadlebars render function 
         }); //end of Foreach 
   }) // end of .THEN
   // .then( () => populateSelectBox() );                             // to show up the selected keyword images (filtering)
   .then( () => populateSelectBoxHandle() ); 
+
   /******************************************************* Filter  Images ***********************************************/
 
   /*   <option value="default">Filter by Keyword</option>    */
@@ -132,6 +134,5 @@ $.get('../data/page-1.json')                                   // get needed dat
         seenHandler[hornH.keyword] = true;                              // after added the keyword for aparticular object we need to set the seen object value to true to avoid add it again next time 
       } // end of if-statement 
     }); // end of foreach loop 
-    $('select').append(arrayH); 
+    $('select').append(arrayH);                                           // show all keywords options as a drop down menu 
   } // end of populateSelectBoxHandle function 
-

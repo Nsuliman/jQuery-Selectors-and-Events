@@ -3,12 +3,13 @@ h1 {
 }
 
 div {
-    float: left;
+    /* float: left;
     height: 520px;
     margin: 3em;
     width: 325px;
     text-align: center;
-    align-content: center; 
+    align-content: center;  */
+    
  }
   
 main {
