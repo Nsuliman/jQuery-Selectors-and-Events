@@ -25,7 +25,7 @@ function Horns (data) {                                         // bulit constru
 
 } // end of HORNS constructor function 
 
-Horns.all= [];                                                  // array to store all objects oce created 
+Horns.all= [];                                                  // array to store all objects once created 
 
 
 
