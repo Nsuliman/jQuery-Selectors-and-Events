@@ -3,13 +3,18 @@ h1 {
 }
 
 div {
-    /* float: left;
+    float: left;
+    width: 325px;
+    text-align: center; 
+    align-content: center; 
+
     height: 520px;
     margin: 3em;
-    width: 325px;
-    text-align: center;
-    align-content: center;  */
-    
+ }  
+ section {
+    display: flex;
+    flex-direction: column-reverse ;
+    flex-wrap: wrap;
  }
   
 main {
