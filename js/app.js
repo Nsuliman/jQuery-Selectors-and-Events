@@ -114,40 +114,24 @@ $.get('../data/page-1.json')                                   // get needed dat
 
   function populateSelectBoxHandle() {
 
+    let seenHandler = {};                                           // new variable object for if statement condition 
+    var selectH   = $('#option-template').html();                   // take the handlebar template from HTML which is the option markup
+    // console.log('selectH : ', selectH);                          // print out option markup
+    var templateH = Handlebars.compile(selectH);                    // convert the temlate into function by compile it with handlebar 
+    // console.log('templateH : ', templateH);                      // console the function 
+    var arrayH = [];                                                 // new array to add the full markup option into it 
 
-    let seenHandler = {};
-    var selectH   = $('#option-template').html();
-    console.log('selectH : ', selectH);
-    var templateH = Handlebars.compile(selectH);
-    console.log('templateH : ', templateH);
-    var array = [];
+    $('select').empty();                                              // empty the select drop down menu 
+    $('select').html('<option value="default">Filter by Keyword</option>');       // set the select 1st value by the default one 
 
-    $('select').empty();
-    $('select').html('<option value="default">Filter by Keyword</option>');
-
-    Horns.all.forEach( (hornH) => {
-      if ( ! seenHandler[hornH.keyword] ) {
-        console.log('hornH : ', hornH);
-        array.push(templateH(hornH));
-        console.log('array : ', array);
-        seenHandler[hornH.keyword] = true;
-      }
-    });
-    $('select').append(array);
-      // let seenArrHandler = [];
-      // let selectH = $('#option-template').html();
-      // let templateH = Handlebars.compile(selectH);
-      // let outputtt = templateH(this.keyword);
-      // $('select').append(outputtt); 
-
-      // Horns.all.forEach ( hornH => 
-      //   {
-      //     if ( !(seenArrHandler.includes(hornH.keyword)))
-      //     {
-      //       let optionH =  `<option value="${horn.keyword}">${horn.keyword}</option>`;
-      //       // let oo = templateH(hornH.keyword);
-      //       selectH.append(optionH);  
-      //       seenArrHandler.push(hornH.keyword); 
-      //     } // end of if-statement 
-      //   }); // end of foreach
+    Horns.all.forEach( (hornH) => {                                     // for loop on objects array
+      if ( ! seenHandler[hornH.keyword] ) {                             // check if the keyword for aparticular object exist in seen object or not , to avoid duplicate values 
+        // console.log('hornH : ', hornH);                              // console each object 
+        arrayH.push(templateH(hornH));                                  // push the object value into the template which is only option markup 
+        // console.log('arrayH : ', arrayH);                            // cosole out the array to see how it's looks like 
+        seenHandler[hornH.keyword] = true;                              // after added the keyword for aparticular object we need to set the seen object value to true to avoid add it again next time 
+      } // end of if-statement 
+    }); // end of foreach loop 
+    $('select').append(arrayH); 
   } // end of populateSelectBoxHandle function 
+
