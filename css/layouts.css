@@ -1,0 +1,32 @@
+h1 {
+    margin: 20px auto; 
+}
+
+div {
+    float: left;
+    width: 325px;
+    text-align: center; 
+    align-content: center; 
+
+    height: 520px;
+    margin: 3em;
+ }  
+ section {
+    display: flex;
+    flex-direction: column-reverse ;
+    flex-wrap: wrap;
+ }
+  
+main {
+    overflow:hidden;
+  }
+
+header {
+    text-align: center;
+    margin: 20px auto;
+    padding: 30px;
+}
+
+footer {
+    margin: 30px auto;
+}
