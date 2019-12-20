@@ -60,30 +60,29 @@ $.get('../data/page-1.json')                                   // get needed dat
           hhorn.render1();                                        // Hnadlebars render function 
         }); //end of Foreach 
   }) // end of .THEN
-  .then( () => populateSelectBox() );                             // to show up the selected keyword images (filtering)
-
+  // .then( () => populateSelectBox() );                             // to show up the selected keyword images (filtering)
+  .then( () => populateSelectBoxHandle() ); 
   /******************************************************* Filter  Images ***********************************************/
 
   /*   <option value="default">Filter by Keyword</option>    */
 
   function populateSelectBox() {
 
-
     // Horns.all.sort((obj1,obj2) => {return obj1.title < obj2.title ? -1 : 1;});       // tried to sort it but here I couldn't, ignore this line of code 
 
-    let seen = [];                                                    // empty array to put unique keywords into it 
+    let seenarr = [];                                                    // empty array to put unique keywords into it 
     let select= $('select');                                          // put the keywords in the select tag options so, add select and assign to variable
     Horns.all.forEach ( horn =>                                       // for-loop for arrary of objects that we stored its into instructor array 
       { 
-        if (! (seen.includes(horn.keyword)))                           // check if keyword in the array , if not we do as below 
+        if (! (seenarr.includes(horn.keyword)))                           // check if keyword in the array , if not we do as below 
         {   
           let option =  `<option value="${horn.keyword}">${horn.keyword}</option>`    // add the keyword to dropdown menu 
           // console.log(' option : ', option);                                          // print out option 
           select.append(option);                                                      // append it to select tag (markup)
-          seen.push(horn.keyword);                                                    // add keyword to this array if there's any repeated keywords will not added 
+          seenarr.push(horn.keyword);                                                    // add keyword to this array if there's any repeated keywords will not added 
         } // end of if statement 
       }); // end of foreach 
-        // console.log('seen Array of keywords  : ', seen );                             // print out seen array 
+        // console.log('seen Array of keywords  : ', seenarr );                             // print out seen array 
   } // end of populateSelectBox function 
 
 
@@ -91,7 +90,7 @@ $.get('../data/page-1.json')                                   // get needed dat
   $('select').on('change', function ()                                                // change event 
   {
     let selectedkeyword = $(this).val();                                              // this is the selected keyword in the dropdown menu ,, val() JQuery build-in function to get the value of something 
-    // console.log(' selectedkeyword: ', selectedkeyword);                               // print out the selected keyword 
+    // console.log(' selectedkeyword: ', selectedkeyword);                            // print out the selected keyword 
     $('div').hide();                                                                  // hide all div and images 
     $(`.${selectedkeyword}`).fadeIn(1000);                                            // show all images related to the selected keywords , fadein() build-in JQuery function to show something slowly
   }); // end of function 
@@ -104,9 +103,51 @@ $.get('../data/page-1.json')                                   // get needed dat
     let tempMak = $('#horn-template').html();                             // catch the handlebar template from HTML based on ID 
     let tepmCompile = Handlebars.compile(tempMak);                        // convert the template into function to do the needful by using handlebar CDN 
 
-    console.log(' tempMak: ',tempMak );                                   // print out the markup 
-    console.log('tepmCompile: ',tepmCompile );                            // print out the function of the handlebar 
+    // console.log(' tempMak: ',tempMak );                                   // print out the markup 
+    // console.log('tepmCompile: ',tepmCompile );                            // print out the function of the handlebar 
     let outputt = tepmCompile(this);                                      // put data and fill it into the template , this refer back to each object you have been created it after you got data from JSON file 
-    console.log('outputt : ', outputt);                                   // print out the markup filled with object data 
+    // console.log('outputt : ', outputt);                                   // print out the markup filled with object data 
     $('#photo-template').append(outputt);                                 // show it on the section must be appear in html 
   } //end of render1 function for handlebar 
+
+
+
+  function populateSelectBoxHandle() {
+
+
+    let seenHandler = {};
+    var selectH   = $('#option-template').html();
+    console.log('selectH : ', selectH);
+    var templateH = Handlebars.compile(selectH);
+    console.log('templateH : ', templateH);
+    var array = [];
+
+    $('select').empty();
+    $('select').html('<option value="default">Filter by Keyword</option>');
+
+    Horns.all.forEach( (hornH) => {
+      if ( ! seenHandler[hornH.keyword] ) {
+        console.log('hornH : ', hornH);
+        array.push(templateH(hornH));
+        console.log('array : ', array);
+        seenHandler[hornH.keyword] = true;
+      }
+    });
+    $('select').append(array);
+      // let seenArrHandler = [];
+      // let selectH = $('#option-template').html();
+      // let templateH = Handlebars.compile(selectH);
+      // let outputtt = templateH(this.keyword);
+      // $('select').append(outputtt); 
+
+      // Horns.all.forEach ( hornH => 
+      //   {
+      //     if ( !(seenArrHandler.includes(hornH.keyword)))
+      //     {
+      //       let optionH =  `<option value="${horn.keyword}">${horn.keyword}</option>`;
+      //       // let oo = templateH(hornH.keyword);
+      //       selectH.append(optionH);  
+      //       seenArrHandler.push(hornH.keyword); 
+      //     } // end of if-statement 
+      //   }); // end of foreach
+  } // end of populateSelectBoxHandle function 
