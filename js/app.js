@@ -56,8 +56,9 @@ $.get('../data/page-1.json')                                   // get needed dat
     data.forEach( hornobject => {                              // for loop to get every object in the array 
       // console.log('hornobject : ', hornobject);             // print out each object alone 
       let hhorn = new Horns(hornobject);                        // create new instance from constructor function 
-          hhorn.render();                                       // call render function using object since the function is a prototype function (part of constructor function)
-    }); //end of Foreach 
+          // hhorn.render();                                       // call render function using object since the function is a prototype function (part of constructor function)
+          hhorn.render1();                                        // Hnadlebars render function 
+        }); //end of Foreach 
   }) // end of .THEN
   .then( () => populateSelectBox() );                             // to show up the selected keyword images (filtering)
 
@@ -94,3 +95,18 @@ $.get('../data/page-1.json')                                   // get needed dat
     $('div').hide();                                                                  // hide all div and images 
     $(`.${selectedkeyword}`).fadeIn(1000);                                            // show all images related to the selected keywords , fadein() build-in JQuery function to show something slowly
   }); // end of function 
+
+
+  /******************************************************* Handle-Bars ***********************************************/
+
+  Horns.prototype.render1 = function(){                                   // Function expression 
+
+    let tempMak = $('#horn-template').html();                             // catch the handlebar template from HTML based on ID 
+    let tepmCompile = Handlebars.compile(tempMak);                        // convert the template into function to do the needful by using handlebar CDN 
+
+    console.log(' tempMak: ',tempMak );                                   // print out the markup 
+    console.log('tepmCompile: ',tepmCompile );                            // print out the function of the handlebar 
+    let outputt = tepmCompile(this);                                      // put data and fill it into the template , this refer back to each object you have been created it after you got data from JSON file 
+    console.log('outputt : ', outputt);                                   // print out the markup filled with object data 
+    $('#photo-template').append(outputt);                                 // show it on the section must be appear in html 
+  } //end of render1 function for handlebar 
