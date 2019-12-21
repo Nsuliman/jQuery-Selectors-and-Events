@@ -1,0 +1,26 @@
+h1 {
+    margin: 20px auto; 
+}
+
+div {
+    float: left;
+    height: 520px;
+    margin: 3em;
+    width: 325px;
+    text-align: center;
+    align-content: center; 
+ }
+  
+main {
+    overflow:hidden;
+  }
+
+header {
+    text-align: center;
+    margin: 20px auto;
+    padding: 30px;
+}
+
+footer {
+    margin: 30px auto;
+}
